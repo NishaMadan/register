@@ -52,7 +52,7 @@ function Signup() {
                     <button type="submit" className="btn btn-success w-100">Register</button>
                 </form>
                 <p>Already Have an Account?</p>
-                <Link to="/login" className="btn btn-light w-100">Login</Link>
+                <Link to="/signin" className="btn btn-light w-100">Login</Link>
             </div>
         </div>
     );

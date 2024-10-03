@@ -9,7 +9,8 @@ function SignIn() {
 
     const handleSignIn = (e) => {
         e.preventDefault();
-        axios.post('/signin', { email, password })
+        axios.post('/api/auth/login', { email, password })
+
             .then((response) => {
                 console.log(response.data);
                 // Redirect to home or file upload page after successful sign-in

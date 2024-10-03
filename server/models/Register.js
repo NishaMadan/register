@@ -8,8 +8,6 @@ const RegisterSchema = new mongoose.Schema({
 
 }) 
 
-const RegisterModel= mongoose.model("registers", RegisterSchema
-
-)
+const RegisterModel= mongoose.model("registers", RegisterSchema)
 
 module.exports = RegisterModel
