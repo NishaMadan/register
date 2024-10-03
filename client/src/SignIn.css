@@ -1,0 +1,8 @@
+.btn-secondary {
+    background-color: darkgray !important; /* Change button color to grey */
+    border: none;
+}
+
+.text-danger {
+    color: red; /* Change link color to red */
+}

@@ -36,7 +36,7 @@ function AdminLogin() {
                         <input type="password" className="form-control" placeholder="Enter Password"
                             onChange={(e) => setPassword(e.target.value)} required />
                     </div>
-                    <button type="submit" className="btn btn-primary w-100">Sign In</button>
+                    <button type="submit" style={{ backgroundColor: 'darkgrey', color: 'white' }} className="btn w-100">SignIn</button>
                 </form>
             </div>
         </div>
