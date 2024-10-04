@@ -151,11 +151,16 @@ function SignIn() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-const handleSignIn = async () => {
+const handleSignIn = async (event) => {
     try {
+        event.preventDefault()
         const response = await axios.post('http://localhost:5000/api/auth/signin', {
             email,
-            password,
+            password
+        }, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
         });
         console.log(response.data); // Log the response data for debugging
     } catch (error) {

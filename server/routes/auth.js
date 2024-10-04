@@ -75,13 +75,16 @@ router.post('/signin', async (req, res) => {
         // Check if the user exists
         const user = await User.findOne({ email });
         if (!user) {
-            return res.status(401).json({ message: 'Invalid credentials' });
+            return res.status(401).json({ message: 'email Invalid credentials' });
         }
 
         // Compare password
+   
+        
         const isMatch = await bcrypt.compare(password, user.password);
+        console.log(password,user.password,isMatch)
         if (!isMatch) {
-            return res.status(401).json({ message: 'Invalid credentials' });
+            return res.status(401).json({ message: 'password Invalid credentials' });
         }
 
         // Generate a JWT token
