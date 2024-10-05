@@ -3,8 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function AdminLogin() {
-    const [adminId, setAdminId] = useState('');
-    const [password, setPassword] = useState('');
+    const [adminId, setAdminId] = useState('admin@gmail.com'); // Default admin email
+    const [password, setPassword] = useState('adminPassword'); // Default admin password
     const navigate = useNavigate();
 
     const handleLogin = (e) => {
@@ -28,13 +28,23 @@ function AdminLogin() {
                 <form onSubmit={handleLogin}>
                     <div className="mb-3">
                         <label htmlFor="adminId"><strong>Admin ID</strong></label>
-                        <input type="text" className="form-control" placeholder="Enter Admin ID"
-                            onChange={(e) => setAdminId(e.target.value)} required />
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Enter Admin ID"
+                            value={adminId} // Set default value
+                            onChange={(e) => setAdminId(e.target.value)} required
+                        />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="password"><strong>Password</strong></label>
-                        <input type="password" className="form-control" placeholder="Enter Password"
-                            onChange={(e) => setPassword(e.target.value)} required />
+                        <input
+                            type="password"
+                            className="form-control"
+                            placeholder="Enter Password"
+                            value={password} // Set default value
+                            onChange={(e) => setPassword(e.target.value)} required
+                        />
                     </div>
                     <button type="submit" style={{ backgroundColor: 'darkgrey', color: 'white' }} className="btn w-100">SignIn</button>
                 </form>
