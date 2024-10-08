@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth');
 const User = require('./models/User');
+
 const cors = require('cors'); 
 require('dotenv').config();
 
@@ -24,28 +25,11 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb+srv://madhini:MADHI123p@clust
     useUnifiedTopology: true,
 }).then(() => {
     console.log('MongoDB connected');
-    createAdminUser();
+   
 }).catch((err) => {
     console.error('MongoDB connection error:', err);
 });
 
-// Admin User Creation
-const createAdminUser = async () => {
-    const adminEmail = 'admin@example.com';
-    const adminExists = await User.findOne({ email: adminEmail });
-    if (!adminExists) {
-        const admin = new User({
-            name: 'Admin',
-            email: adminEmail,
-            password: 'Admin@123', // Ensure to hash password as per the model
-            isAdmin: true,
-        });
-        await admin.save();
-        console.log('Admin user created');
-    } else {
-        console.log('Admin user already exists');
-    }
-};
 
 // Routes
 app.use('/api/auth', authRoutes);

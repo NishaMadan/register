@@ -7,7 +7,35 @@ const router = express.Router();
 
 // JWT secret
 const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
+const adminCredentials = [
+    { email: 'admin1@gmail.com', password: 'adminPassword1' },
+    { email: 'admin2@gmail.com', password: 'adminPassword2' },
+    { email: 'admin3@gmail.com', password: 'adminPassword3' }
+];
 
+// Admin Login Route
+router.post('/admin', (req, res) => {
+    const { adminId, password } = req.body;
+
+    // Find matching admin credentials
+    const validAdmin = adminCredentials.find(
+        admin => admin.email === adminId && admin.password === password
+    );
+
+    if (validAdmin) {
+        // If valid, create a JWT token
+        const token = jwt.sign({ adminId }, JWT_SECRET, { expiresIn: '1h' });
+
+        // Return success message and token
+        return res.status(200).json({
+            message: 'Admin login successful',
+            token
+        });
+    } else {
+        // If credentials don't match, return error
+        return res.status(400).json({ message: 'Invalid Admin ID or password' });
+    }
+});
 // Register Route
 router.post('/register', async (req, res) => {
     const { name, email, password } = req.body;

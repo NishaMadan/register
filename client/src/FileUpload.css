@@ -80,3 +80,18 @@ textarea {
     font-weight: bold;
     margin-top: 5px;
 }
+.logout-button {
+    position: absolute;
+    top: 20px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    background-color: #f44336; /* Red background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 15px; /* Padding */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.logout-button:hover {
+    background-color: #c62828; /* Darker red on hover */
+}

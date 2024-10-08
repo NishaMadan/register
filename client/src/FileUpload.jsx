@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for routing
 import './FileUpload.css'; // Import the CSS file for styles
 
 function FileUpload() {
@@ -10,6 +11,7 @@ function FileUpload() {
     const [description, setDescription] = useState('');
     const [expectedDate, setExpectedDate] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate(); // Initialize useNavigate
 
     // Define allowed formats
     const allowedFormats = ['image/jpeg', 'application/x-iso', 'application/hpgl', 'application/dxf'];
@@ -62,11 +64,18 @@ function FileUpload() {
             });
     };
 
+    const handleLogout = () => {
+        // Perform any logout logic here (if needed)
+        // Redirect to home page
+        navigate('/'); // Navigate to home page
+    };
+
     return (
         <div className="upload-container">
+            <button onClick={handleLogout} className="logout-button">Logout </button>
             <h2>Upload File</h2>
             <form className="upload-form">
-            <div className="form-group">
+                <div className="form-group">
                     <label htmlFor="userName">User Name:</label>
                     <input 
                         type="text" placeholder='Enter your name'
@@ -119,7 +128,6 @@ function FileUpload() {
                     <label htmlFor="expectedDate">Expected Date of Return:</label>
                     <input 
                         type="date" 
-                        
                         id="expectedDate" 
                         value={expectedDate} 
                         onChange={(e) => setExpectedDate(e.target.value)} 
@@ -133,4 +141,3 @@ function FileUpload() {
 }
 
 export default FileUpload;
-
