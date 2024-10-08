@@ -3,22 +3,40 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function AdminLogin() {
-    const [adminId, setAdminId] = useState('admin@gmail.com'); // Default admin email
-    const [password, setPassword] = useState('adminPassword'); // Default admin password
+    const [adminId, setAdminId] = useState('');  // Initial state for admin ID
+    const [password, setPassword] = useState(''); // Initial state for password
     const navigate = useNavigate();
+
+    // List of valid admin credentials
+    const adminCredentials = [
+        { email: 'admin1@gmail.com', password: 'password1' },
+        { email: 'admin2@gmail.com', password: 'password2' },
+        { email: 'admin3@gmail.com', password: 'password3' }
+    ];
 
     const handleLogin = (e) => {
         e.preventDefault();
-        // Replace with actual admin login API
-        axios.post('/admin/login', { adminId, password })
-            .then((response) => {
-                console.log(response.data);
-                // Redirect to file upload page after login
-                navigate('/upload');
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+
+        // Check if entered credentials match any of the admins
+        const validAdmin = adminCredentials.find(
+            admin => admin.email === adminId && admin.password === password
+        );
+
+        if (validAdmin) {
+            // If valid, simulate API call and navigate to upload page
+            axios.post('/admin/login', { adminId, password })
+                .then((response) => {
+                    console.log(response.data);
+                    // Redirect to file upload page after login
+                    navigate('/upload');
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        } else {
+            // Handle invalid credentials
+            alert('Invalid Admin ID or Password. Please try again.');
+        }
     };
 
     return (
@@ -32,8 +50,9 @@ function AdminLogin() {
                             type="text"
                             className="form-control"
                             placeholder="Enter Admin ID"
-                            value={adminId} // Set default value
-                            onChange={(e) => setAdminId(e.target.value)} required
+                            value={adminId}
+                            onChange={(e) => setAdminId(e.target.value)} 
+                            required
                         />
                     </div>
                     <div className="mb-3">
@@ -42,11 +61,14 @@ function AdminLogin() {
                             type="password"
                             className="form-control"
                             placeholder="Enter Password"
-                            value={password} // Set default value
-                            onChange={(e) => setPassword(e.target.value)} required
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)} 
+                            required
                         />
                     </div>
-                    <button type="submit" style={{ backgroundColor: 'darkgrey', color: 'white' }} className="btn w-100">SignIn</button>
+                    <button type="submit" style={{ backgroundColor: 'darkgrey', color: 'white' }} className="btn w-100">
+                        SignIn
+                    </button>
                 </form>
             </div>
         </div>
