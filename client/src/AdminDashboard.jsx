@@ -5,8 +5,7 @@ function AdminDashboard() {
     const [files, setFiles] = useState([]);
 
     useEffect(() => {
-        // Fetch uploaded files when the component mounts
-        axios.get('/admin/uploads')
+        axios.get('http://localhost:5000/admin/uploads')
             .then((response) => {
                 setFiles(response.data);
             })
@@ -16,8 +15,7 @@ function AdminDashboard() {
     }, []);
 
     const handleDownload = (filePath) => {
-        // Initiate file download
-        window.open(filePath, '_blank');
+        window.open(`http://localhost:5000${filePath}`, '_blank');
     };
 
     return (
@@ -43,10 +41,7 @@ function AdminDashboard() {
                             <td>{file.description}</td>
                             <td>{file.expectedDate}</td>
                             <td>
-                                <button
-                                    onClick={() => handleDownload(file.filePath)}
-                                    className="btn btn-primary"
-                                >
+                                <button onClick={() => handleDownload(file.filePath)} className="btn btn-primary">
                                     Download
                                 </button>
                             </td>
@@ -59,3 +54,4 @@ function AdminDashboard() {
 }
 
 export default AdminDashboard;
+
