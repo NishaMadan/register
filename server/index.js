@@ -15,9 +15,6 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'] // Allow only this origin
 }));
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI || 'mongodb+srv://madhini:MADHI123p@cluster0.vkcum.mongodb.net/signin?retryWrites=true&w=majority&appName=Cluster0', {
@@ -33,3 +30,6 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb+srv://madhini:MADHI123p@clust
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
