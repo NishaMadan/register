@@ -3,6 +3,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
+const { sendOtpToEmail }= require('./sendOtpToEmail');
 const router = express.Router();
 
 // JWT secret
@@ -83,39 +84,54 @@ router.post('/signin', async (req, res) => {
     }
 });
 
-// Forgot Password (OTP)
 router.post('/forgot-password', async (req, res) => {
-    const { email } = req.body;
-    const otp = Math.floor(100000 + Math.random() * 900000); // 6-digit OTP
-    const expiry = new Date(Date.now() + 15 * 60 * 1000); // OTP valid for 15 minutes
+  const { email } = req.body;
 
-    // Save OTP and expiry in the user document (extend schema to save OTP and expiry)
+  if (!email) {
+    return res.status(400).json({ message: 'Email is required' });
+  }
+
+  try {
+    // Call your OTP sending function here
+    const otpSent = await sendOtpToEmail(email);
+    
+    if (otpSent) {
+      res.status(200).json({ message: 'OTP sent to email' });
+    } else {
+      res.status(500).json({ message: 'Failed to send OTP' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+// POST route for OTP verification and password reset
+router.post('/reset-password', async (req, res) => {
+    const { email, otp, newPassword } = req.body;
+
     try {
         const user = await User.findOne({ email });
-        if (!user) {
-            return res.status(400).json({ message: 'User not found' });
+
+        // Check if OTP is correct and not expired
+        if (!user || user.otp !== otp || user.otpExpiry < Date.now()) {
+            return res.status(400).json({ message: 'Invalid or expired OTP' });
         }
 
-        user.otp = otp;
-        user.otpExpiry = expiry;
+        // Update user's password
+        user.password = await bcrypt.hash(newPassword, 10);  // Hash new password
+        user.otp = undefined;
+        user.otpExpiry = undefined;
         await user.save();
 
-        // Send OTP to user's email
-        const transporter = nodemailer.createTransport({ /* SMTP Settings */ });
-        const mailOptions = {
-            from: 'noreply@yourapp.com',
-            to: email,
-            subject: 'Your OTP for Password Reset',
-            text: `Your OTP is ${otp}. It will expire in 15 minutes.`
-        };
-        await transporter.sendMail(mailOptions);
-
-        res.status(200).json({ message: 'OTP sent to email' });
+        res.status(200).json({ message: 'Password reset successfully' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+
+
 
 module.exports = router;
 
