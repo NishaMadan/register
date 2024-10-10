@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
 
+
 // Function to generate a 6-digit OTP
 function generateOtp() {
   return Math.floor(100000 + Math.random() * 900000).toString();
@@ -10,7 +11,7 @@ const sendOtpToEmail = async (email) => {
 
   // Create a Nodemailer transporter
   const transporter = nodemailer.createTransport({
-    service: 'gmail',  // You can use 'hotmail', 'yahoo', or another SMTP provider
+    service: 'Gmail', // Outgoing server
     auth: {
       user: process.env.EMAIL_USER, // Sender email address
       pass: process.env.EMAIL_PASS, // Sender email password
@@ -41,37 +42,74 @@ module.exports = sendOtpToEmail;
 
 
 
+// // const nodemailer = require('nodemailer');
+
+// // const sendOtpToEmail = async (email, otp) => {
+// //     console.log('Sending OTP to:', email);
+// //     console.log('Generated OTP:', otp); // Ensure OTP is generated and being sent
+
+// //     const transporter = nodemailer.createTransport({
+// //         service: 'gmail',
+// //         auth: {
+// //             user: process.env.EMAIL_USER,
+// //             pass: process.env.EMAIL_PASS,
+// //         },
+// //     });
+
+// //     const mailOptions = {
+// //         from: process.env.EMAIL_USER,
+// //         to: email,
+// //         subject: 'Your OTP Code',
+// //         text: `Your OTP code is ${otp}`,
+// //     };
+
+// //     try {
+// //         await transporter.sendMail(mailOptions);
+// //         return true;
+// //     } catch (error) {
+// //         console.error('Error sending email:', error); // Log the error for debugging
+// //         return false;
+// //     }
+// // };
+
+
+// // module.exports = { sendOtpToEmail };
+
+
 // const nodemailer = require('nodemailer');
 
-// const sendOtpToEmail = async (email, otp) => {
-//     console.log('Sending OTP to:', email);
-//     console.log('Generated OTP:', otp); // Ensure OTP is generated and being sent
+// // Function to generate a 6-digit OTP
+// function generateOtp() {
+//     return Math.floor(100000 + Math.random() * 900000).toString();
+// }
 
-//     const transporter = nodemailer.createTransport({
-//         service: 'gmail',
-//         auth: {
-//             user: process.env.EMAIL_USER,
-//             pass: process.env.EMAIL_PASS,
-//         },
-//     });
+// const sendOtpToEmail = async (email) => {
+//   const otp = generateOtp();  // Generate a 6-digit OTP
 
-//     const mailOptions = {
-//         from: process.env.EMAIL_USER,
-//         to: email,
-//         subject: 'Your OTP Code',
-//         text: `Your OTP code is ${otp}`,
-//     };
+//   const transporter = nodemailer.createTransport({
+//       service: 'gmail',
+//       auth: {
+//           user: process.env.EMAIL_USER,
+//           pass: process.env.EMAIL_PASS,
+//       },
+//   });
 
-//     try {
-//         await transporter.sendMail(mailOptions);
-//         return true;
-//     } catch (error) {
-//         console.error('Error sending email:', error); // Log the error for debugging
-//         return false;
-//     }
+//   const mailOptions = {
+//       from: process.env.EMAIL_USER,
+//       to: email,
+//       subject: 'Your OTP Code',
+//       text: `Your OTP code is: ${otp}`,
+//   };
+
+//   try {
+//       await transporter.sendMail(mailOptions);
+//       console.log(`OTP sent to ${email}: ${otp}`);
+//       return otp;  // Return the OTP
+//   } catch (error) {
+//       console.error('Error sending OTP:', error.message); // Log the error message
+//       throw new Error('Failed to send OTP');  // Rethrow the error for further handling
+//   }
 // };
 
 
-// module.exports = { sendOtpToEmail };
-
-
+// module.exports = sendOtpToEmail;

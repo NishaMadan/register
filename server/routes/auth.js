@@ -3,7 +3,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
-const { sendOtpToEmail }= require('./sendOtpToEmail');
+const  sendOtpToEmail = require('./sendOtpToEmail');
 const router = express.Router();
 
 // JWT secret
@@ -84,27 +84,29 @@ router.post('/signin', async (req, res) => {
     }
 });
 
+
 router.post('/forgot-password', async (req, res) => {
-  const { email } = req.body;
+    const { email } = req.body;
 
-  if (!email) {
-    return res.status(400).json({ message: 'Email is required' });
-  }
-
-  try {
-    // Call your OTP sending function here
-    const otpSent = await sendOtpToEmail(email);
-    
-    if (otpSent) {
-      res.status(200).json({ message: 'OTP sent to email' });
-    } else {
-      res.status(500).json({ message: 'Failed to send OTP' });
+    if (!email) {
+        return res.status(400).json({ message: 'Email is required' });
     }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
+
+    try {
+        // Call your OTP sending function here
+        const otpSent = await sendOtpToEmail(email);
+        
+        if (otpSent) {
+            res.status(200).json({ message: 'OTP sent to email' });
+        } else {
+            res.status(500).json({ message: 'Failed to send OTP' });
+        }
+    } catch (error) {
+        console.error('Error in forgot-password route:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
 });
+
 
 // POST route for OTP verification and password reset
 router.post('/reset-password', async (req, res) => {
