@@ -112,4 +112,8 @@ module.exports = sendOtpToEmail;
 // };
 
 
+<<<<<<< HEAD
 // module.exports = sendOtpToEmail;
+=======
+// module.exports = sendOtpToEmail;
+>>>>>>> 63d4a5c569012ac4c7b3463064e61b79b07a6df8
