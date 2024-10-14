@@ -3,7 +3,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
-const { sendOtpToEmail }= require('./sendOtpToEmail');
+const sendOtpToEmail = require('./sendOtpToEmail');
 const router = express.Router();
 
 // JWT secret
