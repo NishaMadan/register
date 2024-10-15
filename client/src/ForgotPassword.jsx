@@ -168,6 +168,7 @@ function ForgotPassword() {
       setLoading(false); // Set loading to false when request ends
     }
   };
+  
 
   return (
     <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">

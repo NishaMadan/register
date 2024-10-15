@@ -5,6 +5,8 @@ import SignIn from './SignIn';
 import AdminLogin from './AdminLogin';
 import ForgotPassword from './ForgotPassword';
 import FileUpload from './FileUpload';
+import OtpVerification from './OtpVerification';
+import ResetPassword from './ResetPassword';
 
 function App() {
     return (
@@ -16,6 +18,8 @@ function App() {
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
                 <Route path="/upload" element={<FileUpload />} />
+                <Route path='/otp-verification' element={<OtpVerification />} />
+                <Route path='/reset-password' element={<ResetPassword />} />
             </Routes>
         </Router>
     );
