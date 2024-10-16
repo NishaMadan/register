@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './OtpVerification.css';
 
 function OtpVerification() {
   const [otp, setOtp] = useState('');
@@ -40,8 +41,9 @@ function OtpVerification() {
           placeholder="Enter OTP"
           value={otp}
           onChange={(e) => setOtp(e.target.value)}
+          className="otp-input"
         />
-        <button type="submit">Verify OTP</button>
+        <button type="submit" className="otp-button">Verify OTP</button>
       </form>
     </div>
   );

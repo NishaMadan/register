@@ -144,62 +144,69 @@ export default Signup;
 //     const [confirmPassword, setConfirmPassword] = useState('');
 //     const [showPassword, setShowPassword] = useState(false);
 //     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+//     const [error, setError] = useState('');
+//     const [passwordInfo, setPasswordInfo] = useState('');
 //     const navigate = useNavigate();
 
 //     const strongPasswordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,12}$/;
 
-
 //     const handleSubmit = (e) => {
 //         e.preventDefault();
-    
+
 //         if (password !== confirmPassword) {
-//             alert("Passwords do not match");
+//             setError("Passwords do not match");
 //             return;
 //         }
-    
-//         if (!strongPasswordRegex.test(password)) {
-//             alert("Password must be 8-12 characters long and include at least one uppercase letter, one number, and one special character.");
-//             return;
-//         }
-    
-//         axios.post('http://localhost:5000/api/auth/register', {
-//             name: name,  // Use 'name' instead of 'values.username'
-//             email: email,    // Use 'email' instead of 'values.email'
-//             password: password // Use 'password' instead of 'values.password'
-//         },{
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             }
+
+//         axios.post('http://localhost:5000/api/auth/register', { name, email, password }, {
+//             headers: { 'Content-Type': 'application/json' }
 //         })
 //         .then(response => {
-//             // Handle success
 //             console.log('User registered:', response.data);
-//             // You may want to navigate to another page after successful registration
-//             navigate('/signin'); // Change '/some-path' to the desired route
+//             alert("Registration successful! You can now sign in.");
+//             navigate('/signin');
 //         })
 //         .catch(error => {
-//             // Check if the error has a response and log it for debugging
 //             if (error.response) {
-//                 console.error('Error registering user:', error.response.data);
-//                 alert(`Registration failed: ${error.response.data.message}`);
+//                 setError(`Registration failed: ${error.response.data.message}`);
 //             } else {
-//                 console.error('Error registering user:', error.message);
-//                 alert('Registration failed. Please try again.');
+//                 setError('Registration failed. Please try again.');
 //             }
 //         });
 //     };
-    
+
+//     const handlePasswordChange = (e) => {
+//         const value = e.target.value;
+//         setPassword(value);
+
+//         // Provide feedback on password requirements
+//         if (strongPasswordRegex.test(value)) {
+//             setPasswordInfo('Strong password');
+//         } else if (value.length < 8) {
+//             setPasswordInfo('Password must be at least 8 characters long');
+//         } else if (!/[A-Z]/.test(value)) {
+//             setPasswordInfo('Password must include at least one uppercase letter');
+//         } else if (!/\d/.test(value)) {
+//             setPasswordInfo('Password must include at least one number');
+//         } else if (!/[@$!%*?&#]/.test(value)) {
+//             setPasswordInfo('Password must include at least one special character');
+//         } else {
+//             setPasswordInfo('');
+//         }
+//     };
 
 //     return (
 //         <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
 //             <div className="bg-white p-3 rounded w-25">
 //                 <h2>Register</h2>
+//                 {error && <div className="alert alert-danger">{error}</div>}
 //                 <form onSubmit={handleSubmit}>
 //                     <div className="mb-3">
 //                         <label htmlFor="name"><strong>Name</strong></label>
 //                         <input 
 //                             type="text" 
 //                             className="form-control" 
+//                             id="name"
 //                             placeholder="Enter Name"
 //                             onChange={(e) => setName(e.target.value)} 
 //                             required 
@@ -210,6 +217,7 @@ export default Signup;
 //                         <input 
 //                             type="email" 
 //                             className="form-control" 
+//                             id="email"
 //                             placeholder="Enter Email"
 //                             onChange={(e) => setEmail(e.target.value)} 
 //                             required 
@@ -221,8 +229,9 @@ export default Signup;
 //                             <input 
 //                                 type={showPassword ? "text" : "password"} 
 //                                 className="form-control" 
+//                                 id="password"
 //                                 placeholder="Enter Password"
-//                                 onChange={(e) => setPassword(e.target.value)} 
+//                                 onChange={handlePasswordChange} 
 //                                 required 
 //                             />
 //                             <span className="input-group-text">
@@ -233,6 +242,7 @@ export default Signup;
 //                                 />
 //                             </span>
 //                         </div>
+//                         {passwordInfo && <p className="text-danger">{passwordInfo}</p>}
 //                     </div>
 //                     <div className="mb-3">
 //                         <label htmlFor="confirmPassword"><strong>Confirm Password</strong></label>
@@ -240,6 +250,7 @@ export default Signup;
 //                             <input 
 //                                 type={showConfirmPassword ? "text" : "password"} 
 //                                 className="form-control" 
+//                                 id="confirmPassword"
 //                                 placeholder="Confirm Password"
 //                                 onChange={(e) => setConfirmPassword(e.target.value)} 
 //                                 required 

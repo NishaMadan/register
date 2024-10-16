@@ -47,7 +47,7 @@ function FileUpload() {
         formData.append('expectedDate', expectedDate);
 
         // Make the API call to upload the file
-        axios.post('/upload', formData)
+        axios.post('http://localhost:5000/api/auth/upload', formData)
             .then((response) => {
                 console.log(response.data);
                 // Reset form fields after successful upload
@@ -69,7 +69,7 @@ function FileUpload() {
         // Redirect to home page
         navigate('/'); // Navigate to home page
     };
-
+``
     return (
         <div className="upload-container">
             <button onClick={handleLogout} className="logout-button">Logout </button>

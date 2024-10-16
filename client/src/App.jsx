@@ -7,12 +7,14 @@ import ForgotPassword from './ForgotPassword';
 import FileUpload from './FileUpload';
 import OtpVerification from './OtpVerification';
 import ResetPassword from './ResetPassword';
+import AboutPage from './About';
 
 function App() {
     return (
         <Router>
             <Routes>
                 <Route path="/" element={<LandingPage />} />
+                <Route path="/about" element={<AboutPage/>} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/admin" element={<AdminLogin />} />
                 <Route path="/signin" element={<SignIn />} />

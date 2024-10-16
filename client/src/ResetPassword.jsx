@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import './ResetPassword.css';
 function ResetPassword() {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -52,19 +52,21 @@ function ResetPassword() {
           value={newPassword}
           required
           onChange={(e) => setNewPassword(e.target.value)}
+           className="password-input"
         />
         <input
           type="password"
           placeholder="Confirm New Password"
           value={confirmPassword}
+           className="password-input"
           required
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
-        <button type="submit" disabled={loading}>
+        <button type="submit" disabled={loading} className="reset-button">
           {loading ? 'Resetting...' : 'Reset Password'}
         </button>
       </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>} {/* Display error message */}
+      {error && <p className="reset-button">{error}</p>} {/* Display error message */}
     </div>
   );
 }

@@ -191,9 +191,14 @@ function ForgotPassword() {
               required // Ensures the email field is filled out
             />
           </div>
-          <button type="submit" className="btn btn-success w-100 rounded-0" disabled={loading}>
-            {loading ? 'Sending...' : 'Send'}
-          </button>
+          <button
+  type="submit"
+  className="btn w-100 rounded-0"
+  style={{ backgroundColor: '#6c757d', color: 'white' }}
+  disabled={loading}
+>
+  {loading ? 'Sending...' : 'Send'}
+</button>
         </form>
       </div>
     </div>

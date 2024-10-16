@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 const sendOtpToEmail = require('./sendOtpToEmail');
 const router = express.Router();
-
+const strongPasswordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,12}$/;
 // JWT secret
 const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
 // Admin Credentials (you can hardcode these or move them to env variables)
@@ -39,7 +39,7 @@ router.post('/admin', (req, res) => {
     }
 });
 
-// Register Route
+// // Register Route
 router.post('/register', async (req, res) => {
     const { name, email, password } = req.body;
     console.log('Request received:', req.body);  // Check if correct data is coming through
@@ -66,8 +66,45 @@ router.post('/register', async (req, res) => {
         res.status(500).json({ message: 'Server error. Please try again later.' });
     }
 });
+// // Register Route
+// router.post('/register', async (req, res) => {
+//     const { name, email, password } = req.body;
+//     console.log('Request received:', req.body);  // Check if correct data is coming through
 
-// Login Route
+//     try {
+//         // Ensure the required fields are present
+//         if (!name || !email || !password) {
+//             return res.status(400).json({ message: 'All fields are required' });
+//         }
+
+//         // Check if the password meets the strength requirements
+//         if (!strongPasswordRegex.test(password)) {
+//             return res.status(400).json({
+//                 message: 'Password must be 8-12 characters long, include at least one uppercase letter, one number, and one special character.'
+//             });
+//         }
+
+//         // Check if the user already exists
+//         const existingUser = await User.findOne({ email });
+//         if (existingUser) {
+//             return res.status(400).json({ message: 'User already exists' });
+//         }
+
+//         // Hash the password before saving the user
+//         const hashedPassword = await bcrypt.hash(password, 10); // 10 is the salt rounds
+
+//         // Create the new user
+//         const newUser = new User({ name, email, password: hashedPassword });
+//         await newUser.save();
+
+//         // Send success response
+//         res.status(201).json({ message: 'User registered successfully' });
+//     } catch (error) {
+//         console.error('Server error:', error);  // Log the error in the console
+//         res.status(500).json({ message: 'Server error. Please try again later.' });
+//     }
+// });
+//Login Route
 router.post('/signin', async (req, res) => {
     const { email, password } = req.body;
     try {
@@ -83,6 +120,38 @@ router.post('/signin', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+router.post('/signin', async (req, res) => {
+    const { email, password } = req.body;
+    console.log('Sign-In Attempt:', { email, password });
+
+    try {
+        // Check for required fields
+        if (!email || !password) {
+            return res.status(400).json({ message: 'Email and password are required.' });
+        }
+
+        const user = await User.findOne({ email });
+        console.log('User Found:', user);
+
+        if (!user) {
+            return res.status(400).json({ message: 'Invalid email or password.' });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        console.log('Password Match:', isMatch);
+
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Invalid email or password.' });
+        }
+
+        // If successful, return success message or token
+        res.status(200).json({ message: 'Sign-in successful' });
+    } catch (error) {
+        console.error('Sign-in Error:', error);
+        res.status(500).json({ message: 'Server error. Please try again.' });
+    }
+});
+
 
 
 // Forgot Password Route
@@ -299,7 +368,22 @@ router.post('/reset-password', async (req, res) => {
 //     }
 // });
 
+router.post('/upload', upload.single('file'), async (req, res) => {
+    try {
+        // Store file details in MongoDB
+        const newFile = new File({
+            companyName: req.body.companyName,
+            requirementDescription: req.body.requirementDescription,
+            filePath: req.file.path // Save the file path for download later
+        });
+        await newFile.save(); // Save file info to the database
 
+        res.json({ message: 'File uploaded successfully', file: newFile });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+});
 
 module.exports = router;
 
