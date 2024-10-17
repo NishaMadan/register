@@ -4,8 +4,11 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 const sendOtpToEmail = require('./sendOtpToEmail');
+const multer = require('multer');
+const path = require('path');
+const UserFile = require('../models/UserFile');
 const router = express.Router();
-const strongPasswordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,12}$/;
+//const strongPasswordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,12}$/;
 // JWT secret
 const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
 // Admin Credentials (you can hardcode these or move them to env variables)
@@ -14,6 +17,95 @@ const adminCredentials = [
     { email: 'admin2@gmail.com', password: 'adminPassword2' },
     { email: 'admin3@gmail.com', password: 'adminPassword3' }
 ];
+
+
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "./public/files");  
+    },
+    filename: (req, file, cb) => {
+        cb(null, `${Date.now()}_${file.originalname}`); 
+    }
+});
+
+
+const upload = multer({ storage});
+
+
+
+
+router.post('/upload', upload.single('file'), async (req, res) => {
+    //const { companyName, requirementDescription } = req.body;
+    //const userId = req.userId;  // Assuming you extract user ID from JWT
+
+    if (!req.file) {
+        return res.status(400).json({ message: 'File upload failed' });
+    }
+
+    try {
+        const newFile = new UserFile({
+            // userId,
+            // companyName,
+            // requirementDescription,
+            // fileName: req.file.filename,
+            // filePath: req.file.path,
+            // fileType: req.file.mimetype
+            userId: req.user._id,  // Assuming `req.user` contains the authenticated user's info
+            companyName: req.body.companyName,
+            requirement: req.body.requirement,
+            description: req.body.description,
+            expectedDate: req.body.expectedDate,
+            filePath: req.file.path
+        });
+
+        await newFile.save();
+        res.status(201).json({ message: 'File uploaded successfully', file: newFile });
+    } catch (error) {
+        console.error('File upload error:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+    console.log(req.body)
+    console.log(req.UserFile)
+   
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Admin Login Route
 router.post('/admin', (req, res) => {

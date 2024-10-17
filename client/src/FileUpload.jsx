@@ -18,9 +18,10 @@ function FileUpload() {
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
+        const  selectedFileExtension = selectedFile.name.split('.').pop().toLowerCase();
         if (selectedFile) {
             // Check if the selected file format is allowed
-            if (allowedFormats.includes(selectedFile.type)) {
+            if (allowedFormats.includes(selectedFile.type) || selectedFileExtension === 'dxf') {
                 setFile(selectedFile);
                 setError(''); // Clear error if format is correct
             } else {
