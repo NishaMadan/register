@@ -1,14 +1,25 @@
 /* Center the content vertically and horizontally */
+body {
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
 .otp-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full height of the viewport */
-    background-color: white; /* Background color */
-    text-align: center;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full height of the viewport */
+  width: 100vw; /* Full width of the viewport */
+
+  background-image: url('./assets/otp.jpg'); /* Image path */
+  background-size: cover; /* Cover the container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the background */
+  text-align: center;
+}
+
   /* Style the OTP verification heading */
   h4 {
     font-size: 24px;

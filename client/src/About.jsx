@@ -20,19 +20,19 @@ const AboutPage = () => {
       <section className="management-team">
         <h2>Management Team</h2>
         <div className="team-member">
-          <img src="path-to-image" alt="Anandakumar Duraisamy" />
+          {/* <img src="path-to-image" alt="Anandakumar Duraisamy" /> */}
           <h3>Anandakumar Duraisamy - Managing Director</h3>
           <p>20+ years of experience in Apparel Technology solutions, process automation, material optimization, data management, and business management.</p>
         </div>
         <div className="team-member">
-          <img src="path-to-image" alt="FABRIZIO GIACHETTI" />
+          {/* <img src="path-to-image" alt="FABRIZIO GIACHETTI" /> */}
           <h3>FABRIZIO GIACHETTI - Board Director</h3>
           <p>
             Founder and Board Director of GA Morgan and CEO of Morgan Tecnica Spa, with extensive experience since 1972 in cutting room machinery 
             manufacturing and software development.
           </p>
         </div>
-        {/* Add other team members in a similar way */}
+ 
       </section>
 
       <section className="footer">

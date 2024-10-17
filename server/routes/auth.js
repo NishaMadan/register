@@ -368,22 +368,7 @@ router.post('/reset-password', async (req, res) => {
 //     }
 // });
 
-router.post('/upload', upload.single('file'), async (req, res) => {
-    try {
-        // Store file details in MongoDB
-        const newFile = new File({
-            companyName: req.body.companyName,
-            requirementDescription: req.body.requirementDescription,
-            filePath: req.file.path // Save the file path for download later
-        });
-        await newFile.save(); // Save file info to the database
 
-        res.json({ message: 'File uploaded successfully', file: newFile });
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Server Error');
-    }
-});
 
 module.exports = router;
 

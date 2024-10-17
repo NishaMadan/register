@@ -43,7 +43,10 @@ function ResetPassword() {
   };
 
   return (
-    <div>
+    <div
+    className="reset-container"
+    
+  >
       <h4>Reset Password</h4>
       <form onSubmit={handleSubmit}>
         <input

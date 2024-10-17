@@ -8,6 +8,7 @@ import FileUpload from './FileUpload';
 import OtpVerification from './OtpVerification';
 import ResetPassword from './ResetPassword';
 import AboutPage from './About';
+import AdminDashboard from './AdminDashboard';
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                 <Route path="/upload" element={<FileUpload />} />
                 <Route path='/otp-verification' element={<OtpVerification />} />
                 <Route path='/reset-password' element={<ResetPassword />} />
+                <Route path='/admindashboard' element={<AdminDashboard />} />
             </Routes>
         </Router>
     );

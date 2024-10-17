@@ -1,0 +1,85 @@
+/* General page styling */
+.bg-secondary {
+    background-color: #f8f9fa !important;
+    background-image: url('./assets/product-jpeg.jpg'); /* Relative path to image */
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+  }
+  
+  .vh-100 {
+    height: 100vh;
+  }
+  
+  .d-flex {
+    display: flex !important;
+  }
+  
+  .justify-content-center {
+    justify-content: center !important;
+  }
+  
+  .align-items-center {
+    align-items: center !important;
+  }
+  
+  /* Card styling */
+  .bg-white {
+    background-color: lightslategray !important;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .w-25 {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  /* Form and button styling */
+  h4 {
+    font-size: 1.6rem;
+    color: #343a40;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    font-size: 1rem;
+  }
+  
+  .form-control:focus {
+    border-color: #6c757d;
+    box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25);
+  }
+  
+  .btn {
+    font-size: 1.1rem;
+    padding: 10px 15px;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn {
+    background-color: black;
+    color: white;
+    border: none; /* Remove any border if present */
+  }
+  
+  /* Hover effect for the button */
+  .btn:hover {
+    background-color: grey;
+  }
+  .alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  .alert-success {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  

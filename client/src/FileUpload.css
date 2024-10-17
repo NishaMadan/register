@@ -18,7 +18,7 @@ h2 {
 
 .upload-form {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Stacks form groups vertically */
     background: rgba(0, 0, 0, 0.7); /* Dark overlay for better text visibility */
     padding: 20px;
     border-radius: 8px; /* Rounds corners of the form */
@@ -28,36 +28,41 @@ h2 {
 }
 
 .form-group {
-    margin-bottom: 15px;
-    background-color: transparent;
+    display: flex; /* Enable flexbox for better alignment */
+    margin-bottom: 15px; /* Space between form groups */
 }
 
 label {
-    margin-bottom: 5px;
+    width: 40%; /* Set label width */
+    margin-right: 10px; /* Space between label and input */
     font-weight: bold;
+    color: white; /* Ensure label is visible */
+    font-size: 16px; /* Increase font size for better readability */
 }
 
-input[type="text"]{
-    background-color: transparent;
-}
-textarea,
-input[type="date"] {
+input[type="text"],
+input[type="date"],
+textarea {
+    width: 60%; /* Set input width to take the rest of the space */
     padding: 10px;
-    border: 1px solid ;
+    border: 1px solid white; /* Change border color for visibility */
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 16px; /* Consistent font size */
     transition: border-color 0.3s;
-    background-color: transparent;  /* Smooth transition for border color */
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly visible background */
+    color: white; /* Text color for input */
 }
 
 input[type="file"] {
+    width: 60%; /* Set file input width */
     padding: 5px;
-    background-color: transparent; /* To add some space */
+    background-color: rgba(255, 255, 255, 0.1); /* To add some space */
 }
 
 textarea {
     resize: vertical;
-    background-color: transparent;
+    width: 60%; /* Set textarea width */
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly visible background */
 }
 
 .upload-button {
@@ -80,6 +85,7 @@ textarea {
     font-weight: bold;
     margin-top: 5px;
 }
+
 .logout-button {
     position: absolute;
     top: 20px; /* Adjust as needed */

@@ -32,7 +32,7 @@ function OtpVerification() {
   };
 
   return (
-    <div>
+    <div className='otp-container '>
       <h4>OTP Verification</h4>
       {error && <div>{error}</div>}
       <form onSubmit={handleOtpSubmit}>
