@@ -55,7 +55,7 @@ function ForgotPassword() {
       {success && <div className="alert alert-success">{success}</div>}
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="email">
+          <label htmlFor="email" style={{color: 'black'}}  >
             <strong>Email</strong>
           </label>
           <input
@@ -72,7 +72,7 @@ function ForgotPassword() {
           type="submit"
           className="btn w-100"
           disabled={loading}
-          
+          style={{color: 'black', background: 'grey'}} 
         >
           {loading ? 'Sending...' : 'Send'}
         </button>

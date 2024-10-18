@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import './Signup.css';
 
 function Signup() {
     const [name, setName] = useState('');
@@ -47,85 +48,86 @@ const handleSubmit = (e) => {
 
 
     return (
-        <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
-            <div className="bg-white p-3 rounded w-25">
-                <h2>Register</h2>
-                {error && <div className="alert alert-danger">{error}</div>}
-                <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                        <label htmlFor="name"><strong>Name</strong></label>
+        
+        <div className="signup-container">
+        <div className="signup-card">
+            <h2>Register</h2>
+            {error && <div className="alert alert-danger">{error}</div>}
+            <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                    <label htmlFor="name"><strong>Name</strong></label>
+                    <input 
+                        type="text" 
+                        className="form-control" 
+                        id="name"
+                        placeholder="Enter Name"
+                        onChange={(e) => setName(e.target.value)} 
+                        required 
+                        autoComplete="name" 
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="email"><strong>Email</strong></label>
+                    <input 
+                        type="email" 
+                        className="form-control" 
+                        id="email"
+                        placeholder="Enter Email"
+                        onChange={(e) => setEmail(e.target.value)} 
+                        required 
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="password"><strong>Password</strong></label>
+                    <div className="input-group">
                         <input 
-                            type="text" 
+                            type={showPassword ? "text" : "password"} 
                             className="form-control" 
-                            id="name"
-                            placeholder="Enter Name"
-                            onChange={(e) => setName(e.target.value)} 
+                            id="password"
+                            placeholder="Enter Password"
+                            onChange={(e) => setPassword(e.target.value)} 
                             required 
                         />
+                        <span className="input-group-text">
+                            <FontAwesomeIcon
+                                icon={showPassword ? faEyeSlash : faEye}
+                                onClick={() => setShowPassword(!showPassword)}
+                            />
+                        </span>
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="email"><strong>Email</strong></label>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="confirmPassword"><strong>Confirm Password</strong></label>
+                    <div className="input-group">
                         <input 
-                            type="email" 
+                            type={showConfirmPassword ? "text" : "password"} 
                             className="form-control" 
-                            id="email"
-                            placeholder="Enter Email"
-                            onChange={(e) => setEmail(e.target.value)} 
+                            id="confirmPassword"
+                            placeholder="Confirm Password"
+                            onChange={(e) => setConfirmPassword(e.target.value)} 
                             required 
                         />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="password"><strong>Password</strong></label>
-                        <div className="input-group">
-                            <input 
-                                type={showPassword ? "text" : "password"} 
-                                className="form-control" 
-                                id="password"
-                                placeholder="Enter Password"
-                                onChange={(e) => setPassword(e.target.value)} 
-                                required 
+                        <span className="input-group-text">
+                            <FontAwesomeIcon
+                                icon={showConfirmPassword ? faEyeSlash : faEye}
+                                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                             />
-                            <span className="input-group-text">
-                                <FontAwesomeIcon
-                                    icon={showPassword ? faEyeSlash : faEye}
-                                    onClick={() => setShowPassword(!showPassword)}
-                                    style={{ cursor: 'pointer' }}
-                                />
-                            </span>
-                        </div>
+                        </span>
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="confirmPassword"><strong>Confirm Password</strong></label>
-                        <div className="input-group">
-                            <input 
-                                type={showConfirmPassword ? "text" : "password"} 
-                                className="form-control" 
-                                id="confirmPassword"
-                                placeholder="Confirm Password"
-                                onChange={(e) => setConfirmPassword(e.target.value)} 
-                                required 
-                            />
-                            <span className="input-group-text">
-                                <FontAwesomeIcon
-                                    icon={showConfirmPassword ? faEyeSlash : faEye}
-                                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                    style={{ cursor: 'pointer' }}
-                                />
-                            </span>
-                        </div>
-                    </div>
-                    <button 
-                        type="submit" 
-                        style={{ backgroundColor: 'darkgrey', color: 'white' }} 
-                        className="btn w-100"
-                    >
-                        Register
-                    </button>
-                </form>
-                <p>Already Have an Account?</p>
-                <Link to="/signin" className="btn btn-light w-100">Login</Link>
-            </div>
+                </div>
+                <button 
+                    type="submit" 
+                    className="btn"
+                >
+                    Register
+                </button>
+            </form>
+            <p>Already Have an Account?</p>
+            <Link to="/signin" style={{ color: 'red' }}>Login</Link>
         </div>
+    </div>
+    
+        
     );
 }
 

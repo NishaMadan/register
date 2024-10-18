@@ -11,9 +11,9 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh; /* Full height of the viewport */
-  width: 100vw; /* Full width of the viewport */
+  /* Full width of the viewport */
 
-  background-image: url('./assets/otp.jpg'); /* Image path */
+  background-image: url('./assets/resetimg.jpg'); /* Image path */
   background-size: cover; /* Cover the container */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the background */
@@ -33,23 +33,22 @@ body {
   form {
     display: flex;
     flex-direction: column;
-    width: 100%; /* Full width to stack vertically */
+    width: 80%; /* Full width to stack vertically */
     align-items: center; /* Center align the input and button */
   }
   
   /* Style the OTP input */
   .otp-input {
     padding: 10px;
-    width: 300px;
+    width: 200px; /* Reduced width */
     margin-bottom: 20px;
-    border: 1px solid grey;
+    border: 1px solid white;
     border-radius: 4px;
     font-size: 16px;
     color: black;
     text-align: center;
     display: block; /* Ensure it's block-level */
-  }
-  
+}
   /* Style the button */
   .otp-button {
     padding: 10px 20px;

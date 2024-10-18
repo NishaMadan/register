@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import frontImage from './assets/pic3.avif';
+import frontImage from './assets/Webpicture1.jpg';
 import morganLogo from './assets/morganlogo.ico'; 
 function LandingPage() {
     return (
@@ -24,7 +24,7 @@ function LandingPage() {
                             letterSpacing: '1px',
                             textTransform: 'uppercase'
                         }}>
-                            GA MORGAN
+                            GA MORGAN Dynamics  PVT LTD
                         </span>
                     </Link>
 
@@ -89,8 +89,9 @@ function LandingPage() {
         >
             {/* Welcome Section Content */}
             <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: '20px' }}> {/* Add a translucent overlay */}
-                <h1>Welcome to MORGAN TECHNICA</h1>
-                <p>We are committed to delivering the best service to our customers. Join us on our journey!</p>
+                <h1>Welcome to GA MORGAN DYNAMICS</h1>
+                <p style={{color : 'black', fontSize: '1rem',
+                            fontWeight: 'bold',}}>We are committed to delivering the best service to our customers. Join us on our journey!</p>
             </div>
         </section>
         </div>

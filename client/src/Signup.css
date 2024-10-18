@@ -1,0 +1,79 @@
+/* Container for the entire form */
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('./assets/up2.png') no-repeat center center/cover;
+}
+
+/* Form card styles */
+.signup-card {
+    background: rgba(255, 255, 255, 0.8); 
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Mouse hover effect */
+.signup-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Label styles */
+.signup-card label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #444; /* Mild black color */
+    text-align: left;
+}
+
+/* Input fields style */
+.signup-card .form-control {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding is included in the width */
+}
+
+/* Eye icon inside input field */
+.signup-card .input-group-text {
+    background-color: transparent;
+    border: none;
+}
+
+.signup-card .input-group .form-control {
+    padding-right: 2.5rem;
+}
+
+.signup-card .input-group .input-group-text {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+/* Button styles */
+.signup-card button {
+    background-color: darkgrey;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signup-card button:hover {
+    background-color: grey;
+}

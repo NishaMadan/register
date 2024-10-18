@@ -32,7 +32,7 @@ function SignIn() {
                 {error && <div className="alert alert-danger">{error}</div>}
                 <form onSubmit={handleSignIn}>
                     <div className="mb-3">
-                        <label htmlFor="email"><strong>Email</strong></label>
+                        <label htmlFor="email" style={{color: 'black'}}><strong>Email</strong></label>
                         <input
                             type="email"
                             className="form-control"
@@ -43,7 +43,7 @@ function SignIn() {
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="password"><strong>Password</strong></label>
+                        <label htmlFor="password" style={{color: 'black'}} ><strong>Password</strong></label>
                         <div className="input-group">
                             <input
                                 type={showPassword ? "text" : "password"}
@@ -52,6 +52,7 @@ function SignIn() {
                                 placeholder="Enter Password"
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
+                                
                             />
                             <span className="input-group-text">
                                 <FontAwesomeIcon

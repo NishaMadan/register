@@ -44,6 +44,8 @@ router.post('/upload', upload.single('file'), async (req, res) => {
     }
 
     try {
+        console.log(req.file.filename);
+        
         const newFile = new UserFile({
             // userId,
             // companyName,
@@ -51,15 +53,17 @@ router.post('/upload', upload.single('file'), async (req, res) => {
             // fileName: req.file.filename,
             // filePath: req.file.path,
             // fileType: req.file.mimetype
-            userId: req.user._id,  // Assuming `req.user` contains the authenticated user's info
+          //userId: req.user._id,  // Assuming `req.user` contains the authenticated user's info
             companyName: req.body.companyName,
-            requirement: req.body.requirement,
-            description: req.body.description,
-            expectedDate: req.body.expectedDate,
-            filePath: req.file.path
+            // requirement: req.body.requirement,
+            fileName:req.file.filename,
+            // description: req.body.description,
+            // expectedDate: req.body.expectedDate,
+            filePath: req.file.path,
+            uploadDate:new Date()
         });
 
-        await newFile.save();
+         await newFile.save();
         res.status(201).json({ message: 'File uploaded successfully', file: newFile });
     } catch (error) {
         console.error('File upload error:', error);

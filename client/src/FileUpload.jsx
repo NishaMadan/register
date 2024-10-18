@@ -74,7 +74,7 @@ function FileUpload() {
     return (
         <div className="upload-container">
             <button onClick={handleLogout} className="logout-button">Logout </button>
-            <h2>Upload File</h2>
+            <h2 style={{color: 'black'}}>Upload File</h2>
             <form className="upload-form">
                 <div className="form-group">
                     <label htmlFor="userName">User Name:</label>

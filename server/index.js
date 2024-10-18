@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth');
 const User = require('./models/User');
-
+const adminRoute = require('./routes/admin')
 const cors = require('cors'); 
 require('dotenv').config();
 
@@ -31,6 +31,7 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb+srv://madhini:MADHI123p@clust
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/admin', adminRoute);
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });

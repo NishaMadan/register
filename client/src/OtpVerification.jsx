@@ -42,6 +42,7 @@ function OtpVerification() {
           value={otp}
           onChange={(e) => setOtp(e.target.value)}
           className="otp-input"
+          style={{height: 30, width: 300}}
         />
         <button type="submit" className="otp-button">Verify OTP</button>
       </form>

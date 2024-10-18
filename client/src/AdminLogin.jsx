@@ -30,7 +30,7 @@ function AdminLogin() {
                 <h2>Admin Login</h2>
                 <form onSubmit={handleLogin}>
                     <div className="mb-3">
-                        <label htmlFor="adminId"><strong>Admin ID</strong></label>
+                        <label htmlFor="adminId"style={{color: 'black'}} ><strong>Admin ID</strong></label>
                         <input
                             type="text"
                             className="form-control"
@@ -38,10 +38,19 @@ function AdminLogin() {
                             value={adminId}
                             onChange={(e) => setAdminId(e.target.value)}
                             required
+                            style={{
+                                color: 'black', // Text color
+                                padding: '10px 15px', // Padding: 10px top/bottom, 15px left/right
+                                width: '100%', // Full width
+                                border: '1px solid grey', // Border color
+                                borderRadius: '4px', // Rounded corners
+                                marginBottom: '2px', // Margin below the input
+                                fontSize: '16px', // Font size
+                            }}
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="password"><strong>Password</strong></label>
+                        <label htmlFor="password" style={{color: 'black'}}><strong>Password</strong></label>
                         <input
                             type="password"
                             className="form-control"
@@ -49,9 +58,18 @@ function AdminLogin() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
+                            style={{
+                                color: 'black', // Text color
+                                padding: '10px 15px', // Padding: 10px top/bottom, 15px left/right
+                                width: '100%', // Full width
+                                border: '1px solid grey', // Border color
+                                borderRadius: '4px', // Rounded corners
+                                marginBottom: '2px', // Margin below the input
+                                fontSize: '16px', // Font size
+                            }}
                         />
                     </div>
-                    <button type="submit" className="btn btn-primary w-100">Login</button>
+                    <button type="submit" className="btn btn-primary w-100" style={{ backgroundColor: 'black', color: 'white' }}>Login</button>
                 </form>
             </div>
         </div>
